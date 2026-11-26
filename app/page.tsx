@@ -2,7 +2,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import SpotlightCard from "@/components/SpotlightCard";
 import { Reveal, StaggerList, StaggerItem } from "@/components/Reveal";
-import { services, process } from "@/lib/site";
+import { services, workflow } from "@/lib/site";
 
 export default function Home() {
   return (
