@@ -20,7 +20,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <Reveal><h2 className="text-3xl font-semibold md:text-4xl">How a project runs</h2></Reveal>
           <StaggerList className="mt-12 grid gap-6 md:grid-cols-4">
-            {process.map((p, i) => (
+            {workflow.map((p, i) => (
               <StaggerItem key={p.title}><div className="border-l-2 border-volt/60 pl-5"><span className="text-sm text-volt">Step {i + 1}</span><h3 className="mt-1 text-lg font-medium">{p.title}</h3><p className="mt-2 text-sm text-white/65">{p.text}</p></div></StaggerItem>
             ))}
           </StaggerList>
