@@ -2,7 +2,7 @@
 export const site = {
   name: "PixelCraft Web Studio",
   instagram: "https://instagram.com/pixelcraft.web.in",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pixelcraft.vercel.app",
+  url: "https://pixelcraft.vercel.app",
   nav: [
     { href: "/", label: "Home" },
     { href: "/contact", label: "Contact" },
