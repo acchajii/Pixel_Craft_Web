@@ -41,13 +41,13 @@ export async function POST(req: Request) {
       .insert(result.data);
 
     if (error) {
-      console.error(error.message);
+  console.error("SUPABASE ERROR:", error);
 
-      return NextResponse.json(
-        { error: "Unable to save your enquiry." },
-        { status: 500 }
-      );
-    }
+  return NextResponse.json(
+    { error: error.message },
+    { status: 500 }
+  );
+}
 
     return NextResponse.json({ success: true });
 
