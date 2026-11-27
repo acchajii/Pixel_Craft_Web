@@ -41,19 +41,50 @@ export async function POST(req: Request) {
       .insert(result.data);
 
     if (error) {
-  console.error("SUPABASE ERROR:", error);
+      console.error("SUPABASE ERROR:", error);
+      return NextResponse.json(
+        { error: "Could not save enquiry." },
+        { status: 500 }
+      );
+    }
 
-  return NextResponse.json(
-    { error: error.message },
-    { status: 500 }
-  );
-}
+    let emailSent = false;
 
-    return NextResponse.json({ success: true });
+    try {
+      const emailResponse = await fetch(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            service_id: process.env.EMAILJS_SERVICE_ID,
+            template_id: process.env.EMAILJS_TEMPLATE_ID,
+            user_id: process.env.EMAILJS_PUBLIC_KEY,
+            template_params: result.data,
+          }),
+        }
+      );
 
+      emailSent = emailResponse.ok;
+
+      if (!emailSent) {
+        console.error(
+          "EMAILJS ERROR:",
+          await emailResponse.text()
+        );
+      }
+    } catch (emailError) {
+      console.error("EMAIL SENDING ERROR:", emailError);
+    }
+
+    return NextResponse.json({
+      success: true,
+      emailSent,
+    });
   } catch (error) {
     console.error(error);
-
     return NextResponse.json(
       { error: "Internal server error." },
       { status: 500 }
