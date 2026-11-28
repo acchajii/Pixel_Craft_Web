@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -129,15 +128,6 @@ export default function ContactForm() {
         Project description
         <textarea rows={5} className={field} {...register("message")} />
         {err(errors.message?.message)}
-      </label>
-
-      <label className="block">
-        Preferred contact method
-        <select className={field} {...register("preferred_contact")}>
-          <option value="email">Email</option>
-          <option value="whatsapp">WhatsApp</option>
-          <option value="instagram">Instagram</option>
-        </select>
       </label>
 
       <button
